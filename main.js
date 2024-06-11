@@ -15,7 +15,7 @@ function main() {
 			reactDOM.createElement(
 				"li",
 				{},
-				"yea it should",
+				"yea it should <br />",
 				reactDOM.createElement("br", {}),
 				reactDOM.createElement("span", {}, "hi works"),
 				"shoulder",
