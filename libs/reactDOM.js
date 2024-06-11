@@ -25,7 +25,7 @@ export const reactDOM = {
 							typeof child === "string" ||
 							typeof child === "number"
 						) {
-							parent.innerHTML = child;
+							parent.innerHTML += child;
 						}
 					});
 				};

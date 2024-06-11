@@ -12,7 +12,14 @@ function main() {
 		reactDOM.createElement(
 			"ul",
 			{ class: "text-red-600" },
-			reactDOM.createElement("li", {}, "list 1"),
+			reactDOM.createElement(
+				"li",
+				{},
+				"yea it should",
+				reactDOM.createElement("br", {}),
+				reactDOM.createElement("span", {}, "hi works"),
+				"shoulder",
+			),
 			reactDOM.createElement("li", {}, "list 2"),
 		),
 	);
