@@ -1,26 +1,37 @@
+const createElement = (tagName, props, ...children) => {
+	return {
+		type: tagName,
+		props,
+		children,
+	};
+};
+
 export const reactDOM = {
-	createElement(tagName, props, ...children) {
-		return {
-			type: tagName,
-			props,
-			children,
-		};
-	},
+	createElement,
 	createRoot(targetElement) {
 		return {
 			render(element) {
-				const createdElement = document.createElement(element.type);
+				const getType = (element) => {
+					return typeof element.type === "string"
+						? element
+						: element.type(element.props);
+				};
+				const createdElement = document.createElement(
+					getType(element).type,
+				);
 				const appendNodes = (element, parent) => {
 					element.children.forEach((child) => {
 						if (typeof child === "object") {
+							const el = getType(child);
 							const appendedElement =
-								document.createElement(child.type);
-							appendAttributes(
-								appendedElement,
-								child.props,
-							);
+								document.createElement(el.type);
+							if (typeof child.type === "string")
+								appendAttributes(
+									appendedElement,
+									child.props,
+								);
 							parent.appendChild(appendedElement);
-							appendNodes(child, appendedElement);
+							appendNodes(el, appendedElement);
 						} else if (
 							typeof child === "string" ||
 							typeof child === "number"
